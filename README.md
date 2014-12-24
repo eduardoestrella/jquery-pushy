@@ -27,7 +27,7 @@ Install
 
 1. Add the stylesheet (pushy.css) in your head and the JS (pushy.min.js) file in your footer.
 
-How to use - Simple use
+How to use - Simple mode
 ========
 
 If you only want use a single navigation menu, follow the next steps.
@@ -63,10 +63,10 @@ If you only want use a single navigation menu, follow the next steps.
 </script>
 ```
 
-How to use - Advance use
-=
+How to use - Advance mode
+========================
 
-You can use multiple navigations and define their individual options like button element, container element, position menu, open menu and overlay status.
+You can use multiple navigations and define their individual options like button element, container element, position menu, open menu status and overlay status.
 
 ### Create Multiple navigation Menu
 
@@ -121,7 +121,6 @@ You can use multiple navigations and define their individual options like button
 		button: "menuRightButton",        
         menuPosition: "right"        
 	});
-
 </script>
 ```
 
@@ -148,7 +147,6 @@ Use the CSS class <b>pushy</b> and <b>pushy-left</b> to hide navigation menu in 
 <!-- Menu Button -->
 <div id="menuPushyButton" class="pushy pushy-left">menu</div>
 ```
-
 
 Browser Compatibility
 =====================

@@ -32,7 +32,7 @@ How to use - Simple mode
 
 If you only want use a single navigation menu, follow the next steps.
 
-1. Create the navigation menu with any id attribute value:
+Create the navigation menu with any id attribute value:
 
 ```html
  <!-- Pushy Menu -->
@@ -48,14 +48,14 @@ If you only want use a single navigation menu, follow the next steps.
 </nav>
 ```
 
-2. Create the menu button with the "menuPushyButton" id attribute value:
+Create the menu button with the "menuPushyButton" id attribute value:
 
 ```html
 <!-- Menu Button -->
 <div id="menuPushyButton">menu</div>
 ```
 
-3. Instance jquery-pushy plugin over HTML elements that we create in the step 1
+Instance jquery-pushy plugin over HTML elements that we create in the step 1
 
 ```html
 <script>
@@ -70,7 +70,7 @@ You can use multiple navigations and define their individual options like button
 
 ### Create Multiple navigation Menu
 
-1.  Create the navigations menu with differents ids attributes value
+Create the navigations menu with differents ids attributes value
 
 ```html
  <!-- Pushy LEFT -->
@@ -98,7 +98,7 @@ You can use multiple navigations and define their individual options like button
 </nav>
 ```
 
-2. Create the menu buttons with differents ids attributes value:
+Create the menu buttons with differents ids attributes value:
 
 ```html
 <!-- Menu Left Button -->
@@ -108,7 +108,7 @@ You can use multiple navigations and define their individual options like button
 <div id="menuRightButton">menu Right</div>
 ```
 
-3. Instance both navigations menu over the HTML elements
+Instance both navigations menu over the HTML elements
 
 ```html
 <script>
@@ -128,7 +128,7 @@ You can use multiple navigations and define their individual options like button
 
 You can customize some actions and default container, here it is default option values.
 
-```
+```javascript
 var options = {
     button: "menuPushyButton",  // HTML id element 
     container: "container",		// HTML id element 
@@ -157,6 +157,11 @@ Browser Compatibility
 | Chrome        | Android Browser (Android 4.x+)             |
 | Firefox       | Safari (iOS 7)                             |
 | Safari (Mac)  | Internet Explorer Mobile (Windows Phone 8) |
+
+License
+======
+
+MIT
 
 Thanks
 ======

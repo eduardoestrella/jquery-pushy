@@ -52,7 +52,7 @@ Create the menu button with the "menuPushyButton" id attribute value:
 
 ```html
 <!-- Menu Button -->
-<div id="menuPushyButton">menu</div>
+<div class="menu-pushy-button">menu</div>
 ```
 
 Instance jquery-pushy plugin over HTML elements that we create in the step 1
@@ -102,10 +102,10 @@ Create the menu buttons with differents ids attributes value:
 
 ```html
 <!-- Menu Left Button -->
-<div id="menuLeftButton">menu Left</div>
+<div class="side-left-pushy-button">menu Left</div>
 
 <!-- Menu Right Button -->
-<div id="menuRightButton">menu Right</div>
+<div class="side-right-pushy-button">menu Right</div>
 ```
 
 Instance both navigations menu over the HTML elements
@@ -113,25 +113,36 @@ Instance both navigations menu over the HTML elements
 ```html
 <script>
 	$("#menuLeftSample").Pushy({
-		button: "menuLeftButton",        
+		button: "side-left-pushy-button",        
         menuPosition: "left"
 	});
 
 	$("#menuRightSample").Pushy({
-		button: "menuRightButton",        
+		button: "side-right-pushy-button",        
         menuPosition: "right"        
 	});
 </script>
 ```
 
-### Complete Sample options
+### Pushy full Options
 
-You can customize some actions and default container, here it is default option values.
+You can customize some actions, here it is 
+
+- ```button : "menuPushyButton"``` (String) CSS Class that bind with toggle open|close menu action.
+- ```container : "container"``` (String) ID Element that is pushed when the menu is showing.
+- ```containerPush : true``` (Boolean) Push the container when the menu is showing.
+- ```menuPosition : "left" ``` (String) Position where the menu will appear (left|right|top).
+- ```menuOpen : false ``` (Boolean) Open|close the menu when pushy is load
+- ```overlayShow : true ``` (Boolean) Show|hide the overlay alpha div when the menu is showing.
+
+
+Default option values.
 
 ```javascript
 var options = {
-    button: "menuPushyButton",  // HTML id element 
-    container: "container",		// HTML id element 
+    button: "menuPushyButton",  
+    container: "container",		
+    containerPush: true,
     menuPosition: "left",		
     menuOpen: false,
     overlayShow: true          
@@ -141,11 +152,34 @@ var options = {
 Tips
 ====
 
-Use the CSS class <b>pushy</b> and <b>pushy-left</b> to hide navigation menu in the first load.
+- Use the CSS class ```pushy``` and ```pushy-left``` or ```pushy-right``` or ```pushy-top``` to hide navigation menu in the first load.
 
 ```html
 <!-- Menu Button -->
 <div id="menuPushyButton" class="pushy pushy-left">menu</div>
+```
+
+- Use the ```.push``` CSS class on HTML elements outside of the ```#container```.
+
+```html
+<header class="push">
+    <h1>This is a Heading</h1>
+    <h2>This is a subheading</h2>
+</header>
+
+<!-- Your Content -->
+<div id="container"></div>
+```
+
+- If you change the width of the ```.pushy``` menu, be sure to update the values CSS classes.
+
+- If you want to prevent scrolling of your site when Pushy is open just add overflow-x: hidden and height: 100% to both the html & body tags.
+
+```css
+html, body{
+    overflow-x: hidden;
+    height: 100%;
+}
 ```
 
 Browser Compatibility
@@ -157,6 +191,20 @@ Browser Compatibility
 | Chrome        | Android Browser (Android 4.x+)             |
 | Firefox       | Safari (iOS 7)                             |
 | Safari (Mac)  | Internet Explorer Mobile (Windows Phone 8) |
+
+
+Version History
+======
+
+0.2 
+
+- Menu Top position dynamic calculate Fixed 
+- Add boolean option <b>containerPush</b>
+- Use CSS class on menu button
+- Add dynamic overlay after pushy menu
+- Update Readme file
+- Update demo simple file
+- Update demo advance file
 
 License
 ======

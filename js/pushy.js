@@ -1,4 +1,4 @@
-/*! jquery-pushy - v0.1 - 2014-12-23
+/*! jquery-pushy - v0.2 - 2014-12-26
 * jQuery Navigation Menu plugin using Responsive CSS transforms &amp; transitions with multiple instances and differents positions (left / right / top)
 * https://github.com/eduestrella/jquery-pushy
 * by Eduardo Estrella Rosario
@@ -6,41 +6,52 @@
 
 $.fn.Pushy = function(options) {
 
-	// number of Pushy instances
- 	var instanceNumber = $.fn.Pushy.numInstances = ($.fn.Pushy.numInstances || 0) + 1;
+	// CONSTANTS
+	var POSITION_TOP = "top";
+	var POSITION_LEFT = "left";
+	var POSITION_RIGHT = "right";
 
- 	// settings
+	// SCOPE
+	var that = this;
+
+	// PUSHY INSTANCES
+ 	var instanceNumber = $.fn.Pushy.numInstances = ($.fn.Pushy.numInstances || 0) + 1; 	
+ 	
+ 	// SETTINGS
 	var options = options || {};
 
 	this.menu = this.selector || "#menuPushy";
-	this.button = options.button || "menuPushyButton";
+	this.button = options.button || "menu-pushy-button";
 	this.container = options.container || "container";
-	this.menuPosition = options.menuPosition || "left";
+	this.containerPush = (options.containerPush == undefined ? true : options.containerPush);
+	this.menuPosition = options.menuPosition.toLowerCase() || POSITION_LEFT;
 	this.menuOpen = (options.menuOpen == undefined ? false : options.menuOpen);
 	this.overlayShow = (options.overlayShow == undefined ? true : options.overlayShow);
 
-	// Create the Overlay Div
+	// CREATE DYNAMIC OVERLAY DIV
 	if( this.overlayShow === true){
-		$('body').prepend('<div id="pushyOverlay'+ instanceNumber +'" ></div>');		
+		$(this.menu).after('<div id="pushyOverlay'+ instanceNumber +'" ></div>');		
 	}
 
-	// Global vars
+	// GLOBAL VARS
 	var pushy = $(this.menu), //menu css class
 		body = $('body'),
 		container = $('#'+this.container), //container css class
 		overlayPushy = $('#pushyOverlay'+ instanceNumber), //site overlay
-		menuBtn = $('#'+this.button), //css classes to toggle the menu
+		push = $('.push'), //css class to add pushy capability
+		menuBtn = $('.'+this.button), //css classes to toggle the menu
 		menuSpeed = 200, //jQuery fallback menu speed
 		menuWidth = pushy.width() + "px",//jQuery fallback menu width
+		pushClass = "push-push", //css class to add pushy capability
 		pushyClass = "pushy-" + this.menuPosition + " pushy-" + this.menuPosition + "-open", //menu position & menu open class
 		pushyActiveClass = "overlay-pushy overlay-active ", //css class to toggle site overlay
 		containerClass = "container-" + this.menuPosition + "-push"; //container open class
 
-	// Adding Default CSS classes
+	// DEFAULT CSS CLASSES
 	pushy.addClass('pushy pushy-' + this.menuPosition);
 	menuBtn.addClass('menu-btn');
 
-	// Default Menu status (open / close)
+	// DEFAULT STATUS MENU (open / close)
 	if(this.menuOpen === true){
 		togglePushy();
 	}
@@ -48,19 +59,53 @@ $.fn.Pushy = function(options) {
 	function togglePushy(){				
 		overlayPushy.toggleClass(pushyActiveClass); 
 		pushy.toggleClass(pushyClass);
-		container.toggleClass(containerClass);
+		push.toggleClass(pushClass); //css class to add pushy capability
+		
+		if(that.containerPush){
+			container.toggleClass(containerClass);	
+
+			// if TOP position the height calculate dynamicaly
+			if(that.menuPosition == POSITION_TOP){
+				if(isOpenPushy())
+				{
+					container.css('transform', 'translate3d(0,' + pushy.height() + 'px,0)');							
+				}else{
+					container.css('transform', 'translate3d(0,0,0)');		
+				}				
+			}
+		}
+	}
+
+	function isOpenPushy(){
+		var open = false;
+
+		switch(that.menuPosition){
+			case POSITION_TOP:
+				open = pushy.hasClass("pushy-top-open");
+			break;
+			case POSITION_LEFT:
+				open = pushy.hasClass("pushy-left-open");	
+			break;
+			case POSITION_RIGHT:
+				open = pushy.hasClass("pushy-right-open");
+			break;
+		}
+
+		return open;
 	}
 
 	function openPushyFallback(){
 		overlayPushy.addClass(pushyActiveClass);
 		pushy.animate({left: "0px"}, menuSpeed);
 		container.animate({left: menuWidth}, menuSpeed);		
+		push.animate({left: menuWidth}, menuSpeed); //css class to add pushy capability
 	}
 
 	function closePushyFallback(){
 		overlayPushy.removeClass(pushyActiveClass);
 		pushy.animate({left: "-" + menuWidth}, menuSpeed);
 		container.animate({left: "0px"}, menuSpeed);
+		push.animate({left: "0px"}, menuSpeed); //css class to add pushy capability
 	}
 
 	//checks if 3d transforms are supported removing the modernizr dependency

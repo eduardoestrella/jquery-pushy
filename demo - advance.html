@@ -56,9 +56,9 @@
         <div id="container">
             <!-- Menu Button -->
 
-            <div id="sideTopPushyBtn" class="" style="margin:0 auto;">&#9776; TOP - With Overlay </div>
-            <div id="sideLeftPushyBtn" class="" style="margin:0 auto;float:left">&#9776; LEFT - With Overlay</div>
-            <div id="sideRightPushyBtn" class="" style="margin:0 auto;float:right">&#9776; RIGHT - Without Overlay</div>
+            <div class="side-top-pushy-button" style="margin:0 auto;">&#9776; TOP - With Overlay </div>
+            <div class="side-left-pushy-button" style="margin:0 auto;float:left">&#9776; LEFT - With Overlay</div>
+            <div class="side-right-pushy-button" style="margin:0 auto;float:right">&#9776; RIGHT - Without Overlay</div>
 
             <div style="clear:both"></div>
 
@@ -78,8 +78,9 @@
         <script >
 
             var optionSideTop = {
-                button: "sideTopPushyBtn",
+                button: "side-top-pushy-button",
                 container: "container",
+                containerPush: true,
                 menuPosition: "top",
                 menuOpen: false,
                 overlayShow: true                                    
@@ -88,8 +89,9 @@
 
 
              var optionSideLeft = {
-                button: "sideLeftPushyBtn",
+                button: "side-left-pushy-button",
                 container: "container",
+                containerPush: false,
                 menuPosition: "left",
                 menuOpen: false,
                 overlayShow: true          
@@ -98,8 +100,9 @@
 
            
             var optionSideRight = {
-                button: "sideRightPushyBtn",
+                button: "side-right-pushy-button",
                 container: "container",
+                containerPush: true,
                 menuPosition: "right",
                 menuOpen: false,
                 overlayShow: false

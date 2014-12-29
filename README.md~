@@ -131,7 +131,6 @@ You can customize some actions, here it is
 - ```button : "menuPushyButton"``` (String) CSS Class that bind with toggle open|close menu action.
 - ```container : "container"``` (String) ID Element that is pushed when the menu is showing.
 - ```containerPush : true``` (Boolean) Push the container when the menu is showing.
-- ```containerClass : "menu"``` (String) Add a container's CSS Class when menu is push
 - ```menuPosition : "left" ``` (String) Position where the menu will appear (left|right|top).
 - ```menuOpen : false ``` (Boolean) Open|close the menu when pushy is load
 - ```overlayShow : true ``` (Boolean) Show|hide the overlay alpha div when the menu is showing.
@@ -144,7 +143,6 @@ var options = {
     button: "menuPushyButton",  
     container: "container",		
     containerPush: true,
-    containerClass: "my-menu",
     menuPosition: "left",		
     menuOpen: false,
     overlayShow: true          

@@ -24,6 +24,7 @@ $.fn.Pushy = function(options) {
 	this.button = options.button || "menu-pushy-button";
 	this.container = options.container || "container";
 	this.containerPush = (options.containerPush == undefined ? true : options.containerPush);
+	this.containerCustomClass = options.containerClass || ""; 
 	this.menuPosition = options.menuPosition || POSITION_LEFT;
 	this.menuOpen = (options.menuOpen == undefined ? false : options.menuOpen);
 	this.overlayShow = (options.overlayShow == undefined ? true : options.overlayShow);
@@ -48,12 +49,12 @@ $.fn.Pushy = function(options) {
 		pushClass = "push-push", //css class to add pushy capability
 		pushyClass = "pushy-" + this.menuPosition + " pushy-" + this.menuPosition + "-open", //menu position & menu open class
 		pushyActiveClass = "overlay-pushy overlay-active ", //css class to toggle site overlay
-		containerClass = "container-" + this.menuPosition + "-push"; //container open class
+		containerClass = "container-" + this.menuPosition + "-push" +  " " + this.containerCustomClass; //container open class
 
 	// DEFAULT CSS CLASSES
 	pushy.addClass('pushy pushy-' + this.menuPosition);
-	menuBtn.addClass('menu-btn');
-
+	menuBtn.addClass('menu-btn');	
+	
 	// DEFAULT STATUS MENU (open / close)
 	if(this.menuOpen === true){
 		togglePushy();
@@ -65,7 +66,8 @@ $.fn.Pushy = function(options) {
 		push.toggleClass(pushClass); //css class to add pushy capability
 		
 		if(that.containerPush){
-			container.toggleClass(containerClass);	
+			container.toggleClass(containerClass);
+			
 
 			// if TOP position the height calculate dynamicaly
 			if(that.menuPosition == POSITION_TOP){
@@ -100,7 +102,7 @@ $.fn.Pushy = function(options) {
 	function openPushyFallback(){
 		overlayPushy.addClass(pushyActiveClass);
 		pushy.animate({left: "0px"}, menuSpeed);
-		container.animate({left: menuWidth}, menuSpeed);		
+		container.animate({left: menuWidth}, menuSpeed);
 		push.animate({left: menuWidth}, menuSpeed); //css class to add pushy capability
 	}
 

@@ -24,10 +24,14 @@ $.fn.Pushy = function(options) {
 	this.button = options.button || "menu-pushy-button";
 	this.container = options.container || "container";
 	this.containerPush = (options.containerPush == undefined ? true : options.containerPush);
-	this.menuPosition = options.menuPosition.toLowerCase() || POSITION_LEFT;
+	this.containerCustomClass = options.containerClass || ""; 
+	this.menuPosition = options.menuPosition || POSITION_LEFT;
 	this.menuOpen = (options.menuOpen == undefined ? false : options.menuOpen);
 	this.overlayShow = (options.overlayShow == undefined ? true : options.overlayShow);
 
+	// FORMAT INPUT DATA
+	this.menuPosition = this.menuPosition.toLowerCase();
+	
 	// CREATE DYNAMIC OVERLAY DIV
 	if( this.overlayShow === true){
 		$(this.menu).after('<div id="pushyOverlay'+ instanceNumber +'" ></div>');		
@@ -50,6 +54,7 @@ $.fn.Pushy = function(options) {
 	// DEFAULT CSS CLASSES
 	pushy.addClass('pushy pushy-' + this.menuPosition);
 	menuBtn.addClass('menu-btn');
+	container.addClass(this.containerCustomClass);
 
 	// DEFAULT STATUS MENU (open / close)
 	if(this.menuOpen === true){
